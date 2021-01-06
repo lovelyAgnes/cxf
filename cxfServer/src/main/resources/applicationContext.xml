@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       
+       xmlns:tx="http://www.springframework.org/schema/tx"
+
+       xsi:schemaLocation="
+
+       http://www.springframework.org/schema/beans
+
+       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+
+       http://www.springframework.org/schema/context
+
+       http://www.springframework.org/schema/context/spring-context-4.2.xsd
+
+       http://cxf.apache.org/jaxws
+
+       http://cxf.apache.org/schemas/jaxws.xsd">
+    <!--开启注解扫描声明-->
+
+    <context:component-scan base-package="cxfServer"/>
+    <!--声明服务方式1-->
+
+    <bean id="hello" class="cxfServer.HelloWorldImpl"/>
+
+    <jaxws:server address="/helloworld">
+
+        <jaxws:serviceBean>
+
+            <ref bean="hello"/>
+
+        </jaxws:serviceBean>
+    </jaxws:server>
+    <!--声明服务方式2-->
+
+    <!--
+
+        <jaxws:endpoint id="helloWorld" implementor="com.fmi110.cxf.service.impl.HelloWorldImpl" address="/helloworld"/>
+
+    -->
+</beans>
